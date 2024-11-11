@@ -42,6 +42,7 @@ import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.request.crossfade
+import com.example.compose_study.MainActivity.Companion.cardData
 import com.example.compose_study.ui.theme.Compose_studyTheme
 
 class MainActivity : ComponentActivity() {
@@ -57,6 +58,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        val cardData = ProfileCard(
+            imageUrl = "https://cdn.blueconomy.co.kr/news/photo/202402/2399_3001_921.png",
+            imageDescription = "귀여운 해달",
+            author = "00기자",
+            description = "귀여운 해달은 조개를 까먹고 있다."
+        )
     }
 }
 
@@ -181,6 +191,6 @@ fun ComposeEx() {
 @Composable
 fun GreetingPreview() {
     Compose_studyTheme {
-        ComposeEx()
+        CardEx(cardData = cardData)
     }
 }
