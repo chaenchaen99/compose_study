@@ -26,12 +26,17 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButtonDefaults.Icon
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -41,6 +46,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,6 +58,7 @@ import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
@@ -60,6 +67,7 @@ import coil3.request.allowHardware
 import coil3.request.crossfade
 import com.example.compose_study.MainActivity.Companion.cardData
 import com.example.compose_study.ui.theme.Compose_studyTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -290,13 +298,118 @@ fun DialogEx() {
                 }
             },
             title = {
-                    Text("더하기")
-            }, text = {
+                Text("더하기")
+            },
+            text = {
                 Text("더하기 버튼을 누르면 카운터를 증가합니다.\n버튼을 눌러주세요.")
             },
         )
     }
 }
+
+@Composable
+fun CustomDialogEx() {
+    var openDialog by remember { mutableStateOf(false) }
+    var counter by remember { mutableStateOf(0) }
+
+    Column {
+        Button(onClick = { openDialog = true }) {
+            Text("다이어로그 열기")
+        }
+        Text("카운터: $counter")
+    }
+
+    if (openDialog) {
+        Dialog(
+            onDismissRequest = {
+                openDialog = false
+            }
+        ) {
+            Surface {
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Text("버튼을 눌러주세요.")
+                    Row {
+                        Button(onClick = { openDialog = false }) {
+                            Text("취소")
+                        }
+                        Button(onClick = {
+                            openDialog = false
+                            counter++
+                        }) {
+                            Text("+1")
+                        }
+                        Button(onClick = {
+                            openDialog = false
+                            counter--
+                        }) {
+                            Text("-1")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun DropdownEx() {
+    var expandDropDownMenu by remember { mutableStateOf(false) }
+    var counter by remember { mutableStateOf(0) }
+
+    Column {
+        Button(onClick = {
+            expandDropDownMenu = true
+        }) {
+            Text("드롭다운 열기")
+        }
+        Text("카운터 $counter")
+    }
+
+    DropdownMenu(expanded = expandDropDownMenu,
+        onDismissRequest = { //메뉴가 닫힐 때 호출됨
+        expandDropDownMenu = false
+    }) {
+        DropdownMenuItem(text={ Text("증가")},onClick = {
+            counter++
+        })
+        DropdownMenuItem(text={Text("감소")},onClick = {
+            counter--
+        })
+    }
+}
+
+@Composable
+fun SnackbarEx() {
+    // 상태 초기화
+    var counter by remember { mutableStateOf(0) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+    ) { paddingValues ->
+        // 버튼 레이아웃
+        Button(
+            onClick = {
+                counter++
+                // Snackbar 표시
+                coroutineScope.launch {
+                    //coroutineScope.launch를 사용해 UI 스레드를 차단하지 않고 showSnackbar()를 호출
+                    snackbarHostState.showSnackbar(
+                        message = "카운터는 ${counter}입니다.",
+                        actionLabel = "닫기",
+                        duration = SnackbarDuration.Short
+                    )
+                }
+            },
+            modifier = Modifier.padding(paddingValues)
+        ) {
+            Text("더하기")
+        }
+    }
+}
+
+
 
 @Preview(showBackground = true)
 @Composable
