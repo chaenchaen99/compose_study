@@ -57,7 +57,10 @@ dependencies {
     implementation(libs.coil)
 
     // Hilt
-    implementation(libs.hilt) // libs.versions.toml에서 정의한 hilt 참조
+    implementation(libs.hilt)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.material3.android) // libs.versions.toml에서 정의한 hilt 참조
     kapt(libs.hiltCompiler)   // libs.versions.toml에서 정의한 hilt-android-compiler 참조
 
     //Timber

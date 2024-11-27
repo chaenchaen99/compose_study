@@ -2,6 +2,8 @@ package com.example.movie_app.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.typography
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -10,7 +12,8 @@ import com.example.movie_app.ui.theme.color.ColorSet
 private val LocalColors = staticCompositionLocalOf{ ColorSet.Red.LightColors }
 @Composable
 fun MovieappTheme(
-    myColors: ColorSet,
+    myColors: ColorSet = ColorSet.Red,
+    typoGraphy: Typography = typography,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -23,7 +26,7 @@ fun MovieappTheme(
     CompositionLocalProvider (LocalColors provides  colors){
         MaterialTheme(
             colorScheme = colors.material,
-            typography = Typography,
+            typography = typoGraphy,
             content = content
         )
     }
