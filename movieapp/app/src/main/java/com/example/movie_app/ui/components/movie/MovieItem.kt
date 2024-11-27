@@ -1,6 +1,5 @@
 package com.example.movie_app.ui.components.movie
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.movie_app.R
 
@@ -33,9 +33,7 @@ fun MovieItem(
             .width(CARD_WIDTH)
             .padding(10.dp)
     ) {
-        Poster(
-
-        )
+        Poster()
 
         Text(
             text = "반지의 제왕",
@@ -44,7 +42,6 @@ fun MovieItem(
             modifier = Modifier.padding(
                 top = 10.dp
             )
-
         )
 
         Row(
@@ -55,18 +52,17 @@ fun MovieItem(
         ) {
             Icon(
                 modifier = Modifier
-                    .padding(2.dp)
+                    .padding(4.dp)
                     .size(ICON_SIZE),
-                imageVector = ImageVector.vectorResource(id = coil.base.R.drawable.abc_vector_test),
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_rating),
                 tint = Color.Black.copy(
                     alpha = 0.5f
                 ),
-                contentDescription = "rating icon"
+                contentDescription = "rating icon" //이 이미지가 어떤 이미지인지 알려주는 역할
             )
             Text(
-                text = "asdf",
-                )
-
+                text = "5.0",
+            )
         }
     }
 }
@@ -76,15 +72,17 @@ fun MovieItem(
 fun Poster(
 
 ) {
-    Card(
-
-    ) {
+    Card() {
         Box(
-
             modifier = Modifier
                 .width(CARD_WIDTH)
                 .height(200.dp),
-
         )
     }
+}
+
+@Preview
+@Composable
+fun MovieItemPreview() {
+    MovieItem()
 }
