@@ -19,6 +19,7 @@ val Blue400 = Color(0xFF395DE8)
 val Grey200 = Color(0xFF908499)
 val Grey900 = Color(0xFF151515)
 val White = Color(0xFFFFFFFF)
+val White200 = Color(0x40FFFFFF)
 val Black = Color(0xFF000000)
 
 sealed class ColorSet {
@@ -28,13 +29,15 @@ sealed class ColorSet {
     object Red : ColorSet() {
         override var LightColors = MyColors(
             material = lightColorScheme(
-                primary = Red700,
-                onPrimary = Red800,
+                primary = Grey200,
+                onPrimary = White,
                 secondary = Purple900,
-                onSecondary = Purple700,
+                onSecondary = White,
+                tertiary = Purple700,
+                onTertiary = White200,
                 surface = White,
                 onSurface = Black,
-                background = White,
+                background = Grey900,
                 onBackground = Black,
                 error = Red400,
             ),
@@ -45,14 +48,16 @@ sealed class ColorSet {
 
         override var DarkColors = MyColors(
             material = darkColorScheme(
-                primary = Purple900,
-                onPrimary = Red800,
+                primary = Grey900,
+                onPrimary = White,
                 secondary = Purple900,
                 onSecondary = Purple700,
+                tertiary = Purple700,
+                onTertiary = White200,
                 surface = White,
                 onSurface = Black,
-                background = White,
-                onBackground = Black,
+                background = Black,
+                onBackground = White,
                 error = Red400,
             )
         )
@@ -65,6 +70,8 @@ sealed class ColorSet {
                 onPrimary = Purple400,
                 secondary = Red900,
                 onSecondary = Red700,
+                tertiary = Purple700,
+                onTertiary = White200,
                 surface = White,
                 onSurface = Purple900,
                 background = White,
@@ -78,10 +85,12 @@ sealed class ColorSet {
 
         override var DarkColors = MyColors(
             material = darkColorScheme(
-                primary = Red900,
-                onPrimary = Purple400,
+                primary = Grey900,
+                onPrimary = White,
                 secondary = Blue400,
                 onSecondary = Purple900,
+                tertiary = Purple700,
+                onTertiary = White200,
                 surface = White,
                 onSurface = Purple900,
                 background = White,

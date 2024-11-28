@@ -72,6 +72,10 @@ val Typography.h5Title: TextStyle
     @Composable get() = headlineLarge.copy(
         fontSize = 24.sp
     )
+val Typography.button: TextStyle
+    @Composable get() = headlineMedium.copy(
+        fontSize = 18.sp
+    )
 
 val Typography.dialogButton: TextStyle
     @Composable get() = headlineMedium.copy(
