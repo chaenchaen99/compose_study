@@ -1,4 +1,5 @@
-package com.example.movie_app.ui.components.movie.buttons
+package com.example.movie_app.ui.components.buttons
+
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -19,29 +20,29 @@ import com.example.movie_app.ui.theme.MovieappTheme
 import com.example.movie_app.ui.theme.Paddings
 
 @Composable
-fun PrimaryButton(
+fun SecondaryBorderlessButton(
     modifier: Modifier = Modifier,
     @StringRes id: Int? = null,
     text: String = "",
     onClick: () -> Unit,
-){
+) {
     Button(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
+            containerColor = MaterialTheme.colorScheme.secondary,
+            contentColor = MaterialTheme.colorScheme.onSecondary,
             disabledContentColor = MaterialTheme.colorScheme.onTertiary,
             disabledContainerColor = MaterialTheme.colorScheme.background,
         )
-    ){
+    ) {
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = id?.let { stringResource(id = id) }  ?: text,
+                text = id?.let { stringResource(id = id) } ?: text,
                 style = MaterialTheme.typography.button,
                 modifier = Modifier.padding(Paddings.small)
             )
@@ -51,8 +52,9 @@ fun PrimaryButton(
 
 @Composable
 @Preview
-fun PrimaryButtonPreview() {
+fun SecondaryBorderlessButtonPreview() {
     MovieappTheme {
-        PrimaryButton (text = "Submit"){}
+        SecondaryBorderlessButton(text = "Submit") {}
     }
+
 }

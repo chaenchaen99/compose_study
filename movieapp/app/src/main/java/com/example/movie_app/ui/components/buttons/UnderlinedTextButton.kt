@@ -1,8 +1,7 @@
-package com.example.movie_app.ui.components.movie.buttons
+package com.example.movie_app.ui.components.buttons
 
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,41 +15,35 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import button
 import com.example.movie_app.ui.theme.MovieappTheme
 import com.example.movie_app.ui.theme.Paddings
-import com.example.movie_app.ui.theme.colorScheme
+import underlinedButton
 
 @Composable
-fun SecondaryButton(
+fun UnderlinedTextButton(
     modifier: Modifier = Modifier,
     @StringRes id: Int? = null,
     text: String = "",
     onClick: () -> Unit,
-) {
+){
     Button(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         onClick = onClick,
-        border = BorderStroke(
-            2.dp,
-            MaterialTheme.colorScheme.tertiary,
-        ),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = MaterialTheme.colorScheme.onSecondary,
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
             disabledContentColor = MaterialTheme.colorScheme.onTertiary,
             disabledContainerColor = MaterialTheme.colorScheme.background,
         )
-    ) {
+    ){
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = id?.let { stringResource(id = id) } ?: text,
-                style = MaterialTheme.typography.button,
+                text = id?.let { stringResource(id = id) }  ?: text,
+                style = MaterialTheme.typography.underlinedButton,
                 modifier = Modifier.padding(Paddings.small)
             )
         }
@@ -59,9 +52,8 @@ fun SecondaryButton(
 
 @Composable
 @Preview
-fun SecondaryButtonPreview() {
+fun UnderlinedTextButtonPreview() {
     MovieappTheme {
-        SecondaryButton(text = "Submit") {}
+        UnderlinedTextButton (text = "Submit"){}
     }
-
 }
