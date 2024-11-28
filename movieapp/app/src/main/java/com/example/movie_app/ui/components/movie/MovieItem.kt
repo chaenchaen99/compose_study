@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,9 +21,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.movie_app.R
+import com.example.movie_app.ui.theme.Paddings
 
 
 private val CARD_WIDTH = 150.dp
+private val CARD_HEIGHT = 200.dp
 private val ICON_SIZE = 12.dp
 
 @Composable
@@ -31,7 +34,7 @@ fun MovieItem(
     Column(
         modifier = Modifier
             .width(CARD_WIDTH)
-            .padding(10.dp)
+            .padding(Paddings.large)
     ) {
         Poster()
 
@@ -40,28 +43,33 @@ fun MovieItem(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(
-                top = 10.dp
-            )
+                top = Paddings.large,
+            ),
+            style = MaterialTheme.typography.bodyMedium
         )
 
         Row(
             modifier = Modifier.padding(
-                vertical = 5.dp
+                vertical = Paddings.medium
             ),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 modifier = Modifier
-                    .padding(4.dp)
+                    .padding(Paddings.small)
                     .size(ICON_SIZE),
                 imageVector = ImageVector.vectorResource(id = R.drawable.ic_rating),
-                tint = Color.Black.copy(
+                tint = MaterialTheme.colorScheme.onSurface.copy(
                     alpha = 0.5f
                 ),
                 contentDescription = "rating icon" //이 이미지가 어떤 이미지인지 알려주는 역할
             )
             Text(
                 text = "5.0",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(
+                    alpha = 0.5f
+                )
             )
         }
     }
@@ -76,7 +84,7 @@ fun Poster(
         Box(
             modifier = Modifier
                 .width(CARD_WIDTH)
-                .height(200.dp),
+                .height(CARD_HEIGHT),
         )
     }
 }
