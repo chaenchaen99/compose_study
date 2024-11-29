@@ -21,6 +21,14 @@ private val spoqaThin = FontFamily(
 
 
 val typography = Typography(
+    titleLarge = TextStyle(
+        fontFamily = spoqaBold,
+        fontSize = 24.sp,
+    ),
+    titleMedium = TextStyle(
+        fontFamily = spoqaBold,
+        fontSize = 20.sp,
+    ),
     displayLarge = TextStyle(
         fontFamily = spoqaBold,
         fontSize = 60.sp,
@@ -47,7 +55,7 @@ val typography = Typography(
     ),
     bodyLarge = TextStyle(
         fontFamily = spoqaBold,
-        fontSize = 15.sp
+        fontSize = 18.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = spoqaRegular,
@@ -55,7 +63,7 @@ val typography = Typography(
     ),
     bodySmall = TextStyle(
         fontFamily = spoqaRegular,
-        fontSize = 14.sp
+        fontSize = 13.sp
     ),
     labelLarge = TextStyle(
         fontFamily = spoqaRegular,
@@ -89,6 +97,7 @@ val Typography.underlinedDialogButton: TextStyle
 
 val Typography.underlinedButton: TextStyle
     @Composable get() = headlineMedium.copy(
+        fontSize = 18.sp,
         textDecoration = TextDecoration.Underline
     )
 
