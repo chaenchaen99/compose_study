@@ -46,7 +46,7 @@ fun RatingPreview() {
                     title = "OPEN",
                     leadingIconData = LeadingIconData(
                         R.drawable.ic_send,
-                        iconContentDescription = "ic_send",
+                        iconContentDescription = null,
                     )
                 ) {},
                 DialogButton.SecondaryBorderless("CANCEL") {}

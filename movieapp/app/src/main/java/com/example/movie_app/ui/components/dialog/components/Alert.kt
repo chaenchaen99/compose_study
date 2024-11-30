@@ -1,5 +1,4 @@
 package com.example.movie_app.ui.components.dialog.components
-import DialogPopup
 import androidx.compose.runtime.Composable
 import com.example.movie_app.models.dialog.DialogButton
 import com.example.movie_app.models.dialog.DialogContent
