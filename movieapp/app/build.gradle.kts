@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.hilt)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.play.services.drive)
     kapt(libs.hiltCompiler)   // libs.versions.toml에서 정의한 hilt-android-compiler 참조
 
     //Timber

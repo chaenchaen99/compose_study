@@ -2,7 +2,9 @@ package com.example.movie_app.features.feed.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movie_app.features.common.entity.EntityWrapper
 import com.example.movie_app.features.common.repository.IMovieDataSource
+import com.example.movie_app.features.feed.domain.usecase.GetFeedCategoryUseCase
 import com.example.movie_app.features.feed.presentation.input.IFeedViewModelInput
 import com.example.movie_app.features.feed.presentation.output.FeedState
 
@@ -18,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FeedViewModel @Inject constructor(
-    private val movieRepository: IMovieDataSource,
+    private val getFeedCategoryUseCase: GetFeedCategoryUseCase,
     override val feedUiEffect: SharedFlow<FeedUiEffect>
 ) : ViewModel(), IFeedViewModelOutput, IFeedViewModelInput {
 
@@ -32,9 +34,27 @@ class FeedViewModel @Inject constructor(
     val feedUiState: SharedFlow<FeedUiEffect>
         get() = _feedUIEffect
 
-    fun getMovies() {
+    init{
+        fetchFeed()
+    }
+
+    private fun fetchFeed() {
         viewModelScope.launch {
-            movieRepository.getMovieList()
+            _feedState.value = FeedState.Loading
+
+            val categories = getFeedCategoryUseCase()
+            _feedState.value = when(categories){
+                is EntityWrapper.Success -> {
+                    FeedState.Main(
+                        categories = categories.entity
+                    )
+                }
+                is EntityWrapper.Fail -> {
+                    FeedState.Failed(
+                        reason = categories.error.message ?: "Unknown error"
+                    )
+                }
+            }
         }
     }
 

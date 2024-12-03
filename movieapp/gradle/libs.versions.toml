@@ -18,6 +18,7 @@ retrofitVersion = "2.11.0"
 gsonVersion = "2.11.0"
 okHttpVersion = "4.12.0"
 accessibilityTestFramework = "3.2"
+playServicesDrive = "17.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -49,6 +50,7 @@ retrofit-rxjava2 = { group = "com.squareup.retrofit2", name = "adapter-rxjava2",
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
 accessibility-test-framework = { module = "com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework", version.ref = "accessibilityTestFramework" }
+play-services-drive = { group = "com.google.android.gms", name = "play-services-drive", version.ref = "playServicesDrive" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
