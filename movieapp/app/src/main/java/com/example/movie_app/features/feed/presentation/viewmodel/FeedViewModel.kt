@@ -24,6 +24,8 @@ class FeedViewModel @Inject constructor(
     override val feedUiEffect: SharedFlow<FeedUiEffect>
 ) : ViewModel(), IFeedViewModelOutput, IFeedViewModelInput {
 
+    val output : IFeedViewModelOutput = this
+    val input : IFeedViewModelInput = this
 
     private val _feedState: MutableStateFlow<FeedState> = MutableStateFlow(FeedState.Loading)
     override val feedState: StateFlow<FeedState>

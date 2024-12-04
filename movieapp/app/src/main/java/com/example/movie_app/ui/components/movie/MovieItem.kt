@@ -1,13 +1,17 @@
 package com.example.movie_app.ui.components.movie
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,12 +20,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
+import coil.size.Scale
 import com.example.movie_app.R
+import com.example.movie_app.features.common.entity.MovieFeedItemEntity
+import com.example.movie_app.features.feed.presentation.input.IFeedViewModelInput
 import com.example.movie_app.ui.theme.Paddings
+import retrofit2.http.Url
 
 
 private val CARD_WIDTH = 150.dp
@@ -30,16 +42,21 @@ private val ICON_SIZE = 12.dp
 
 @Composable
 fun MovieItem(
+    movie: MovieFeedItemEntity,
+    input: IFeedViewModelInput
 ) {
     Column(
         modifier = Modifier
             .width(CARD_WIDTH)
             .padding(Paddings.large)
     ) {
-        Poster()
+        Poster(
+            thumbnailMovie = movie,
+            input = input,
+        )
 
         Text(
-            text = "반지의 제왕",
+            text = movie.title,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(
@@ -65,7 +82,7 @@ fun MovieItem(
                 contentDescription = "rating icon" //이 이미지가 어떤 이미지인지 알려주는 역할
             )
             Text(
-                text = "5.0",
+                text = movie.rating.toString(),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface.copy(
                     alpha = 0.5f
@@ -76,21 +93,32 @@ fun MovieItem(
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Poster(
-
+    thumbnailMovie: MovieFeedItemEntity,
+    input: IFeedViewModelInput,
 ) {
-    Card() {
-        Box(
-            modifier = Modifier
-                .width(CARD_WIDTH)
-                .height(CARD_HEIGHT),
+    Card(
+        modifier = Modifier
+            .fillMaxWidth(),
+        onClick = {
+            input.openDetail(thumbnailMovie.title)
+        }
+    ) {
+        Image(
+            painter = rememberAsyncImagePainter(
+                ImageRequest.Builder(LocalContext.current)
+                    .data(data = thumbnailMovie.thumbUrl)
+                    .apply {
+                        crossfade(true)
+                        scale(Scale.FILL)
+                    }.build()
+            ),
+            modifier = Modifier.width(CARD_WIDTH).height(200.dp),
+            contentScale = ContentScale.FillHeight,
+            contentDescription = "Movie Poster Image",
         )
-    }
-}
 
-@Preview
-@Composable
-fun MovieItemPreview() {
-    MovieItem()
+    }
 }
