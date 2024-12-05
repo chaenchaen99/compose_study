@@ -39,7 +39,7 @@ fun PrimaryButton(
         shape = MaterialTheme.shapes.large,
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
+            containerColor = MaterialTheme.colorScheme.secondary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
             disabledContentColor = MaterialTheme.colorScheme.onTertiary,
             disabledContainerColor = MaterialTheme.colorScheme.background,

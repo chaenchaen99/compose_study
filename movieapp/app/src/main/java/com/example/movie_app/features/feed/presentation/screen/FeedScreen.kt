@@ -48,7 +48,7 @@ import com.example.movie_app.ui.theme.colorScheme
 import timber.log.Timber
 
 val COMMON_HORIZONTAL_PADDING = Paddings.medium
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(
@@ -73,19 +73,19 @@ fun FeedScreen(
                         style = MaterialTheme.typography.headlineMedium.copy(Color.White)
                     )
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.DarkGray
-                ),
+                colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary),
                 actions = {
                     AppBarMenu(
-                   //     btnColor = btnColor,
-                   //     changeAppColor = changeAppColor,
+                        //     btnColor = btnColor,
+                        //     changeAppColor = changeAppColor,
                         input = input
                     )
                 }
             )
-        }
-    ) {paddingValues ->
+        },
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+    ) { paddingValues ->
+
         BodyContent(
             modifier = Modifier.padding(paddingValues),
             feedState = feedStateHolder.value,
@@ -96,8 +96,8 @@ fun FeedScreen(
 
 @Composable
 fun AppBarMenu(
-   // btnColor: Color,
-  //  changeAppColor: () -> Unit,
+    // btnColor: Color,
+    //  changeAppColor: () -> Unit,
     input: IFeedViewModelInput
 ) {
     Row(
@@ -107,7 +107,7 @@ fun AppBarMenu(
     ) {
         IconButton(
             onClick = {
-             //   changeAppColor()
+                //   changeAppColor()
             }
         ) {
             Box(
@@ -134,45 +134,45 @@ fun AppBarMenu(
 
 @Composable
 fun BodyContent(
-    modifier : Modifier,
+    modifier: Modifier,
     feedState: FeedState,
     input: IFeedViewModelInput
 ) {
     Column(modifier = modifier.fillMaxSize()) {
-    when (feedState) {
-        is FeedState.Loading -> {
-            Timber.d("MoviesScreen: Loading")
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-        }
-
-        is FeedState.Main -> {
-            Timber.d("MoviesScreen: Success")
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                itemsIndexed(feedState.categories) { _, category ->
-                    CategoryRow(
-                        categoryEntity = category,
-                        input = input
+        when (feedState) {
+            is FeedState.Loading -> {
+                Timber.d("MoviesScreen: Loading")
+                Box(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
                     )
                 }
             }
-        }
 
-        is FeedState.Failed -> {
-            Timber.d("MoviesScreen: Error")
-            RetryMessage(
-                message = feedState.reason,
-                input = input
-            )
+            is FeedState.Main -> {
+                Timber.d("MoviesScreen: Success")
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    itemsIndexed(feedState.categories) { _, category ->
+                        CategoryRow(
+                            categoryEntity = category,
+                            input = input
+                        )
+                    }
+                }
+            }
+
+            is FeedState.Failed -> {
+                Timber.d("MoviesScreen: Error")
+                RetryMessage(
+                    message = feedState.reason,
+                    input = input
+                )
+            }
         }
-    }
     }
 }
 

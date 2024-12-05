@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.movie_app.ui.theme.Paddings
 import com.example.movie_app.ui.theme.colorScheme
 import com.example.movie_app.ui.util.getAnnotatedText
@@ -22,14 +23,13 @@ fun MovieMeta(
         // Key
         Text(
             text = key,
-            style = MaterialTheme.typography.h5Title,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+            style = MaterialTheme.typography.bodyLarge.copy(Color.DarkGray),
         )
 
         // Value
         Text(
             text = getAnnotatedText(text = value),
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium.copy(Color.DarkGray)
         )
 
         Spacer(modifier = Modifier.height(Paddings.large))

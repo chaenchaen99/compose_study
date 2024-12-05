@@ -36,11 +36,13 @@ class FeedFragment : Fragment() {
         observeUiEffects()
         return ComposeView(requireContext()).apply{
             setContent{
-                FeedScreen(
-                    feedStateHolder = viewModel.output.feedState.collectAsState(),
-                    input = viewModel.input,
+                MovieappTheme {
+                    FeedScreen(
+                        feedStateHolder = viewModel.output.feedState.collectAsState(),
+                        input = viewModel.input,
 
-                )
+                        )
+                }
             }
         }
     }

@@ -9,34 +9,33 @@ val Red400 = Color(0xFFFF5258)
 val Red700 = Color(0xFFEC0000)
 val Red800 = Color(0xFFAF0000)
 val Red900 = Color(0xFF531F1C)
-val Purple200 = Color(0xFF908499)
-val Purple400 = Color(0xFF6D59FF)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF635270)
-val Purple900 = Color(0xFF200833)
 val Green400 = Color(0xFF55D800)
 val Blue400 = Color(0xFF395DE8)
 val Grey200 = Color(0xFF908499)
 val Grey900 = Color(0xFF151515)
-val White = Color(0xFFFFFFFF)
-val White200 = Color(0x40FFFFFF)
 val Black = Color(0xFF000000)
+
+val White100 = Color(0xFFFFFFFF)
+val Beige100 = Color(0xFFFDF7F4)
+val Green100 = Color(0xFF8EB486)
+val Brown100 = Color(0xFF997C70)
+val DarkBrown100 = Color(0xFF685752)
 
 sealed class ColorSet {
     open lateinit var LightColors: MyColors
     open lateinit var DarkColors: MyColors
 
-    object Red : ColorSet() {
+    object Brown : ColorSet() {
         override var LightColors = MyColors(
             material = lightColorScheme(
-                primary = Grey200,
-                primaryContainer = Grey900,
-                onPrimary = White,
-                secondary = Purple900,
-                onSecondary = White,
-                tertiary = Purple700,
-                onTertiary = White200,
-                surface = White,
+                primary = Green100,
+                primaryContainer = Beige100,
+                onPrimary = White100,
+                secondary = Brown100,
+                onSecondary = White100,
+                tertiary = DarkBrown100,
+                onTertiary = White100,
+                surface = White100,
                 onSurface = Black,
                 background = Grey900,
                 onBackground = Black,
@@ -50,16 +49,16 @@ sealed class ColorSet {
         override var DarkColors = MyColors(
             material = darkColorScheme(
                 primary = Grey900,
-                onPrimary = White,
+                onPrimary = White100,
                 primaryContainer = Grey900,
-                secondary = Purple900,
-                onSecondary = Purple700,
-                tertiary = Purple700,
-                onTertiary = White200,
-                surface = White,
+                secondary = Grey900,
+                onSecondary = White100,
+                tertiary = DarkBrown100,
+                onTertiary = White100,
+                surface = White100,
                 onSurface = Black,
                 background = Black,
-                onBackground = White,
+                onBackground = White100,
                 error = Red400,
             )
         )
@@ -69,36 +68,36 @@ sealed class ColorSet {
         override var LightColors = MyColors(
             material = lightColorScheme(
                 primary = Blue400,
-                onPrimary = Purple400,
+                onPrimary = White100,
                 primaryContainer = Grey900,
-                secondary = Red900,
-                onSecondary = Red700,
-                tertiary = Purple700,
-                onTertiary = White200,
-                surface = White,
-                onSurface = Purple900,
-                background = White,
-                onBackground = Purple900,
+                secondary = Grey900,
+                onSecondary = White100,
+                tertiary = DarkBrown100,
+                onTertiary = White100,
+                surface = White100,
+                onSurface = DarkBrown100,
+                background = White100,
+                onBackground = DarkBrown100,
                 error = Red400,
             ),
             success = Green400,
-            disabledSecondary = Purple700,
+            disabledSecondary = DarkBrown100,
             textFiledBackground = Grey200
         )
 
         override var DarkColors = MyColors(
             material = darkColorScheme(
                 primary = Grey900,
-                onPrimary = White,
+                onPrimary = White100,
                 primaryContainer = Grey900,
-                secondary = Blue400,
-                onSecondary = Purple900,
-                tertiary = Purple700,
-                onTertiary = White200,
-                surface = White,
-                onSurface = Purple900,
-                background = White,
-                onBackground = Purple900,
+                secondary = Grey900,
+                onSecondary = White100,
+                tertiary = DarkBrown100,
+                onTertiary = White100,
+                surface = White100,
+                onSurface = DarkBrown100,
+                background = White100,
+                onBackground = DarkBrown100,
                 error = Red400,
             )
         )

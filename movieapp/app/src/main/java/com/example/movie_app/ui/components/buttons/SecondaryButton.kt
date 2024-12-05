@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import button
 import com.example.movie_app.ui.theme.MovieappTheme
 import com.example.movie_app.ui.theme.Paddings
+import com.example.movie_app.ui.theme.colorScheme
 
 @Composable
 fun SecondaryButton(
@@ -37,8 +38,8 @@ fun SecondaryButton(
             MaterialTheme.colorScheme.tertiary,
         ),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = MaterialTheme.colorScheme.onSecondary,
+            containerColor = MaterialTheme.colorScheme.tertiary,
+            contentColor = MaterialTheme.colorScheme.tertiary,
             disabledContentColor = MaterialTheme.colorScheme.onTertiary,
             disabledContainerColor = MaterialTheme.colorScheme.background,
         )
@@ -49,7 +50,7 @@ fun SecondaryButton(
         ) {
             Text(
                 text = id?.let { stringResource(id = id) } ?: text,
-                style = MaterialTheme.typography.button,
+                style = MaterialTheme.typography.button.copy(MaterialTheme.colorScheme.onTertiary),
                 modifier = Modifier.padding(Paddings.small)
             )
         }

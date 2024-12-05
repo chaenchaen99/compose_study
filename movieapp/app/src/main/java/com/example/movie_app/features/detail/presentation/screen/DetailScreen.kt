@@ -89,10 +89,10 @@ fun MovieDetail(
                         )
                     }
                 },
-                colors =  TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primaryContainer,),
+                colors =  TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary,),
             )
         },
-        containerColor = MaterialTheme.colorScheme.onPrimary,
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
     ) {paddingValues ->
         Column(
             modifier = Modifier
@@ -150,7 +150,7 @@ fun MovieDetail(
                     top = Paddings.extra,
                     bottom = Paddings.large
                 ),
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.headlineSmall.copy(Color.DarkGray)
             )
 
             // Desc
@@ -159,7 +159,7 @@ fun MovieDetail(
                 modifier = Modifier.padding(
                     bottom = Paddings.xlarge
                 ),
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium.copy(Color.DarkGray)
             )
 
             // Rating

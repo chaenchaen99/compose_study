@@ -61,7 +61,7 @@
                         )
 
                         is ForegroundColorSpan -> addStyle(
-                            SpanStyle(color = Color(span.foregroundColor)),
+                            SpanStyle(color = Color.DarkGray),
                             start,
                             end
                         )

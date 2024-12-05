@@ -11,10 +11,10 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.example.movie_app.ui.theme.color.ColorSet
 import com.example.movie_app.ui.theme.color.MyColors
 
-private val LocalColors = staticCompositionLocalOf{ ColorSet.Red.LightColors }
+private val LocalColors = staticCompositionLocalOf{ ColorSet.Brown.LightColors }
 @Composable
 fun MovieappTheme(
-    myColors: ColorSet = ColorSet.Red,
+    myColors: ColorSet = ColorSet.Brown,
     typoGraphy: Typography = typography,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
