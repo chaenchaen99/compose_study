@@ -60,7 +60,11 @@ class FeedViewModel @Inject constructor(
     }
 
     override fun openDetail(movieName: String) {
-
+        viewModelScope.launch {
+            _feedUIEffect.emit(
+                FeedUiEffect.OpenMovieDetail(movieName)
+            )
+        }
     }
 
     override fun openInfoDialog() {
