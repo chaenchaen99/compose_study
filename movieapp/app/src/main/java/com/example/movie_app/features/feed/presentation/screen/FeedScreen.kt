@@ -24,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
@@ -61,19 +62,20 @@ fun FeedScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primaryContainer)
-                    .requiredHeight(70.dp),
+                    .requiredHeight(100.dp),
                 title = {
                     Text(
                         modifier = Modifier.padding(
                             start = COMMON_HORIZONTAL_PADDING
                         ),
                         text = stringResource(id = R.string.app_name),
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.headlineMedium.copy(Color.White)
                     )
                 },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.DarkGray
+                ),
                 actions = {
                     AppBarMenu(
                    //     btnColor = btnColor,
@@ -83,8 +85,9 @@ fun FeedScreen(
                 }
             )
         }
-    ) {
+    ) {paddingValues ->
         BodyContent(
+            modifier = Modifier.padding(paddingValues),
             feedState = feedStateHolder.value,
             input = input
         )
@@ -131,9 +134,11 @@ fun AppBarMenu(
 
 @Composable
 fun BodyContent(
+    modifier : Modifier,
     feedState: FeedState,
     input: IFeedViewModelInput
 ) {
+    Column(modifier = modifier.fillMaxSize()) {
     when (feedState) {
         is FeedState.Loading -> {
             Timber.d("MoviesScreen: Loading")
@@ -167,6 +172,7 @@ fun BodyContent(
                 input = input
             )
         }
+    }
     }
 }
 

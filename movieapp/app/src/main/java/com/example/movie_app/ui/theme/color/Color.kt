@@ -30,6 +30,7 @@ sealed class ColorSet {
         override var LightColors = MyColors(
             material = lightColorScheme(
                 primary = Grey200,
+                primaryContainer = Grey900,
                 onPrimary = White,
                 secondary = Purple900,
                 onSecondary = White,
@@ -50,6 +51,7 @@ sealed class ColorSet {
             material = darkColorScheme(
                 primary = Grey900,
                 onPrimary = White,
+                primaryContainer = Grey900,
                 secondary = Purple900,
                 onSecondary = Purple700,
                 tertiary = Purple700,
@@ -68,6 +70,7 @@ sealed class ColorSet {
             material = lightColorScheme(
                 primary = Blue400,
                 onPrimary = Purple400,
+                primaryContainer = Grey900,
                 secondary = Red900,
                 onSecondary = Red700,
                 tertiary = Purple700,
@@ -87,6 +90,7 @@ sealed class ColorSet {
             material = darkColorScheme(
                 primary = Grey900,
                 onPrimary = White,
+                primaryContainer = Grey900,
                 secondary = Blue400,
                 onSecondary = Purple900,
                 tertiary = Purple700,

@@ -21,7 +21,6 @@ import javax.inject.Inject
 @HiltViewModel
 class FeedViewModel @Inject constructor(
     private val getFeedCategoryUseCase: GetFeedCategoryUseCase,
-    override val feedUiEffect: SharedFlow<FeedUiEffect>
 ) : ViewModel(), IFeedViewModelOutput, IFeedViewModelInput {
 
     val output : IFeedViewModelOutput = this
@@ -33,7 +32,7 @@ class FeedViewModel @Inject constructor(
 
     //유저로부터 입력을 받아 fragment 단에서 액션을 수행하기 위한 flow
     private val _feedUIEffect = MutableSharedFlow<FeedUiEffect>(replay = 0)
-    val feedUiState: SharedFlow<FeedUiEffect>
+    override val feedUiEffect: SharedFlow<FeedUiEffect>
         get() = _feedUIEffect
 
     init{
@@ -61,7 +60,7 @@ class FeedViewModel @Inject constructor(
     }
 
     override fun openDetail(movieName: String) {
-        TODO("Not yet implemented")
+
     }
 
     override fun openInfoDialog() {
